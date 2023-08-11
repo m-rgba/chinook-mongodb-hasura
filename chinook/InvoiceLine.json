@@ -1,0 +1,24 @@
+{
+  "$jsonSchema": {
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "InvoiceId": {
+        "bsonType": "number"
+      },
+      "InvoiceLineId": {
+        "bsonType": "number"
+      },
+      "Quantity": {
+        "bsonType": "number"
+      },
+      "TrackId": {
+        "bsonType": "number"
+      },
+      "UnitPrice": {
+        "bsonType": "number"
+      }
+    }
+  }
+}

@@ -1,0 +1,1000 @@
+{
+  "resource_version": 25,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "default",
+        "kind": "postgres",
+        "tables": [],
+        "configuration": {
+          "connection_info": {
+            "database_url": {
+              "from_env": "HASURA_GRAPHQL_DATABASE_URL"
+            },
+            "isolation_level": "read-committed",
+            "pool_settings": {
+              "connection_lifetime": 600,
+              "idle_timeout": 180,
+              "max_connections": 50,
+              "retries": 1
+            },
+            "use_prepared_statements": true
+          }
+        }
+      },
+      {
+        "name": "mongodb",
+        "kind": "Mongo",
+        "tables": [
+          {
+            "table": [
+              "Album"
+            ],
+            "logical_model": "Album",
+            "object_relationships": [
+              {
+                "name": "Artist",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "ArtistId": "ArtistId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Artist"
+                    ]
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "Tracks",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "AlbumId": "AlbumId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Track"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "Artist"
+            ],
+            "logical_model": "Artist",
+            "array_relationships": [
+              {
+                "name": "Albums",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "ArtistId": "ArtistId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Album"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "Customer"
+            ],
+            "logical_model": "Customer",
+            "object_relationships": [
+              {
+                "name": "Employee",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "SupportRepId": "EmployeeId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Employee"
+                    ]
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "Invoices",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "CustomerId": "CustomerId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Invoice"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "Employee"
+            ],
+            "logical_model": "Employee",
+            "object_relationships": [
+              {
+                "name": "Employee",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "ReportsTo": "EmployeeId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Employee"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "Genre"
+            ],
+            "logical_model": "Genre",
+            "array_relationships": [
+              {
+                "name": "Genres",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "GenreId": "GenreId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Track"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "Invoice"
+            ],
+            "logical_model": "Invoice",
+            "object_relationships": [
+              {
+                "name": "Customer",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "CustomerId": "CustomerId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Customer"
+                    ]
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "InvoiceLine",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "InvoiceId": "InvoiceId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "InvoiceLine"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "InvoiceLine"
+            ],
+            "logical_model": "InvoiceLine",
+            "object_relationships": [
+              {
+                "name": "Invoice",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "InvoiceId": "InvoiceId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Invoice"
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "Track",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "TrackId": "TrackId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Track"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "MediaType"
+            ],
+            "logical_model": "MediaType",
+            "array_relationships": [
+              {
+                "name": "Tracks",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "MediaTypeId": "MediaTypeId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Track"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "Playlist"
+            ],
+            "logical_model": "Playlist",
+            "array_relationships": [
+              {
+                "name": "PlaylistTracks",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "PlaylistId": "PlaylistId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "PlaylistTrack"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "PlaylistTrack"
+            ],
+            "logical_model": "PlaylistTrack",
+            "object_relationships": [
+              {
+                "name": "Playlist",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "PlaylistId": "PlaylistId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Playlist"
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "Track",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "TrackId": "TrackId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Track"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": [
+              "Track"
+            ],
+            "logical_model": "Track",
+            "object_relationships": [
+              {
+                "name": "Album",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "AlbumId": "AlbumId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Album"
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "Genre",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "GenreId": "GenreId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "Genre"
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "MediaType",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "MediaTypeId": "MediaTypeId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "MediaType"
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "PlaylistTracks",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "TrackId": "TrackId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "PlaylistTrack"
+                    ]
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "InvoiceLines",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "TrackId": "TrackId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": [
+                      "InvoiceLine"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "logical_models": [
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "AlbumId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Title",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "ArtistId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              }
+            ],
+            "name": "Album"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "ArtistId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Name",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              }
+            ],
+            "name": "Artist"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "CustomerId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "FirstName",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "LastName",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Company",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Address",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "City",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "State",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Country",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "PostalCode",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Phone",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Fax",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Email",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "SupportRepId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              }
+            ],
+            "name": "Customer"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "EmployeeId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "LastName",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "FirstName",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Title",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "ReportsTo",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "BirthDate",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "HireDate",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Address",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "City",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "State",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Country",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "PostalCode",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Phone",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Fax",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Email",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              }
+            ],
+            "name": "Employee"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "GenreId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Name",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              }
+            ],
+            "name": "Genre"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "InvoiceId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "CustomerId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "InvoiceDate",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "BillingAddress",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "BillingCity",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "BillingState",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "BillingCountry",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "BillingPostalCode",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Total",
+                "type": {
+                  "nullable": true,
+                  "scalar": "float"
+                }
+              }
+            ],
+            "name": "Invoice"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "InvoiceLineId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "InvoiceId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "TrackId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "UnitPrice",
+                "type": {
+                  "nullable": true,
+                  "scalar": "float"
+                }
+              },
+              {
+                "name": "Quantity",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              }
+            ],
+            "name": "InvoiceLine"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "MediaTypeId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Name",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              }
+            ],
+            "name": "MediaType"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "PlaylistId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Name",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              }
+            ],
+            "name": "Playlist"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "PlaylistId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "TrackId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              }
+            ],
+            "name": "PlaylistTrack"
+          },
+          {
+            "fields": [
+              {
+                "name": "_id",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "TrackId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Name",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "AlbumId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "MediaTypeId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "GenreId",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Composer",
+                "type": {
+                  "nullable": true,
+                  "scalar": "text"
+                }
+              },
+              {
+                "name": "Milliseconds",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "Bytes",
+                "type": {
+                  "nullable": true,
+                  "scalar": "int"
+                }
+              },
+              {
+                "name": "UnitPrice",
+                "type": {
+                  "nullable": true,
+                  "scalar": "float"
+                }
+              }
+            ],
+            "name": "Track"
+          }
+        ],
+        "configuration": {
+          "template": null,
+          "timeout": null,
+          "value": {
+            "connection": "mongodb://root:password@mongodb:27017",
+            "db": "chinookValidation"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+version: '3'
+services:
+
+  hasura:
+    image: hasura/graphql-engine:v2.32.0-beta.1
+    container_name: mongo_hasura
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./hasura:/hasura
+    environment:
+      HASURA_GRAPHQL_EE_LICENSE_KEY: [ENTER KEY]
+      HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_LOG_LEVEL: debug
+      HASURA_GRAPHQL_METADATA_DEFAULTS: '{"backend_configs":{"dataconnector":{"Mongo":{"uri":"http://mongo-data-connector:3000"}}}}'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:15
+    container_name: mongo_pg
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 25
+
+  mongo-data-connector:
+    image: hasura/mongo-data-connector:v2.32.0-beta.1
+    container_name: mongo_connector
+    ports:
+      - 3000:3000
+
+  mongodb:
+    image: mongo:6
+    container_name: mongodb_mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./chinook/chinook-import.sh:/docker-entrypoint-initdb.d/chinook-import.sh
+      - ./chinook:/chinook
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 10s

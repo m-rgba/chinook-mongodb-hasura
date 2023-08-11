@@ -1,0 +1,36 @@
+{
+  "$jsonSchema": {
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "AlbumId": {
+        "bsonType": "number"
+      },
+      "Bytes": {
+        "bsonType": "number"
+      },
+      "Composer": {
+        "bsonType": "string"
+      },
+      "GenreId": {
+        "bsonType": "number"
+      },
+      "MediaTypeId": {
+        "bsonType": "number"
+      },
+      "Milliseconds": {
+        "bsonType": "number"
+      },
+      "Name": {
+        "bsonType": "string"
+      },
+      "TrackId": {
+        "bsonType": "number"
+      },
+      "UnitPrice": {
+        "bsonType": "number"
+      }
+    }
+  }
+}

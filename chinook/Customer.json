@@ -1,0 +1,48 @@
+{
+  "$jsonSchema": {
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "Address": {
+        "bsonType": "string"
+      },
+      "City": {
+        "bsonType": "string"
+      },
+      "Company": {
+        "bsonType": "string"
+      },
+      "Country": {
+        "bsonType": "string"
+      },
+      "CustomerId": {
+        "bsonType": "number"
+      },
+      "Email": {
+        "bsonType": "string"
+      },
+      "Fax": {
+        "bsonType": "string"
+      },
+      "FirstName": {
+        "bsonType": "string"
+      },
+      "LastName": {
+        "bsonType": "string"
+      },
+      "Phone": {
+        "bsonType": "string"
+      },
+      "PostalCode": {
+        "bsonType": "string"
+      },
+      "State": {
+        "bsonType": "string"
+      },
+      "SupportRepId": {
+        "bsonType": "number"
+      }
+    }
+  }
+}
