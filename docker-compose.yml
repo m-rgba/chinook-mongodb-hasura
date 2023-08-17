@@ -2,7 +2,7 @@ version: '3'
 services:
 
   hasura:
-    image: hasura/graphql-engine:v2.32.0-beta.1
+    image: hasura/graphql-engine:v2.32.0
     container_name: mongo_hasura
     restart: always
     ports:
@@ -37,7 +37,7 @@ services:
       retries: 25
 
   mongo-data-connector:
-    image: hasura/mongo-data-connector:v2.32.0-beta.1
+    image: hasura/mongo-data-connector:v2.32.0
     container_name: mongo_connector
     ports:
       - 3000:3000
